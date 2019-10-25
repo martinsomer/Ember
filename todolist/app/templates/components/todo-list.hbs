@@ -1,0 +1,35 @@
+<div class = 'container'>
+    <div class = 'header'>
+        To do list
+    </div>
+    
+    <div class = 'items'>
+        {{#each items as |item|}}
+            <div class = 'item'>
+                <div
+                     class = {{if item.done 'itemValueCrossed' 'itemValue'}}
+                     onclick = {{action '_checkItem' item.id}}>
+                        {{item.value}}
+                </div>
+                
+                <button
+                    class = 'removeItemButton'
+                    onclick = {{action '_removeItem' item.id}}>
+                        -
+                </button>
+            </div>
+        {{else}}
+            <div class = 'noItems'>
+                No items to display
+            </div>
+        {{/each}}
+    </div>
+    
+    {{input
+        class = 'inputField'
+        value = inputField
+        type = 'text'
+        placeholder = 'Write new item and hit Enter'
+        enter = (action '_createNewItem')
+    }}
+</div>
